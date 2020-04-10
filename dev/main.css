@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@500&display=swap');
+* {
+    font-family: 'Baloo Paaji 2', cursive;
+}
+
+body {
+    background-color: #ededed;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.head {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.head .md-block, .head .bg-block {
+    display: flex;
+}
+
+.welcome-block {
+    display: flex;
+    flex: 0.8;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.welcome-block .welcome-message {
+    font-size: 2rem;
+}
+
+.wheather-block {
+    display: flex;
+    flex-flow: column nowrap;
+    width: max-content;
+    flex: 0.2;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.p-0 {
+    padding: 0;
+    margin: 0;
+}
+
+.head .md-block>span {
+    margin-right: 1rem;
+}
+
+.wheather-block .wheather-info.icn {
+    margin-right: 0.5rem;
+}
+
+.main-body {
+    margin-top: 3rem;
+    min-height: calc(100vh - 3rem - 119px);
+}
+
+.notes {
+    width: 100%;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+    font-size: 2rem;
+    resize: none;
+    min-height: calc(100vh - 3rem - 129px);
+    padding: 0;
+    margin: 0;
+}
