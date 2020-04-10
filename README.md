@@ -1,4 +1,4 @@
-# lum
+# Lum
 Take note of everything you want!
 
 Replace the new tab page with a very simple and useful notepad.
