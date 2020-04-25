@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     notes.addEventListener('blur', () => {
         if (saverInterval) clearInterval(saverInterval)
     })
+    document.querySelector('.btn-reload').addEventListener('click', () => {
+        navigator.geolocation.getCurrentPosition(chargeLocation)
+    })
 })
 
 const save = (key, data) => {
@@ -48,20 +51,21 @@ const chargeLocation = (position) => {
     fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
         .then(resp => resp.json())
         .then(data => {
-            data['timeCall'] = Date.now()
-            save(weatherKey, data)
-            setHeader(data)
+            let toSave = {}
+            toSave['weather'] = data.weather[0]
+            toSave['temperature'] = data.main
+            toSave['timeCall'] = Date.now()
+            save(weatherKey, toSave)
+            setHeader(toSave)
         })
 }
 
 const setHeader = (data) => {
-    const weather = data.weather[0]
-    document.querySelector('.wheather-info.icn').src = weather.icon
-    document.querySelector('.wheather-info.main').innerText = `${weather.main} (${data.name})`
-    const temperature = data.main
-    document.querySelector('.wheather-info.temp').innerText = `${temperature.temp}ºC`
-    document.querySelector('.wheather-info.templt.max').innerText = `${temperature.temp_max}ºC`
-    document.querySelector('.wheather-info.templt.min').innerText = `${temperature.temp_min}ºC`
+    document.querySelector('.wheather-info.icn').src = data.weather.icon
+    document.querySelector('.wheather-info.main').innerText = `${data.weather.main}`
+    document.querySelector('.wheather-info.temp').innerText = `${data.temperature.temp}ºC`
+    document.querySelector('.wheather-info.templt.max').innerText = `${data.temperature.temp_max}ºC`
+    document.querySelector('.wheather-info.templt.min').innerText = `${data.temperature.temp_min}ºC`
 }
 
 const checkNotes = () => {
