@@ -22,6 +22,7 @@ body {
 .head .md-block, .head .bg-block {
     display: flex;
 }
+
 .head .bg-block {
     align-items: center;
 }
@@ -68,7 +69,7 @@ body {
 
 .main-body {
     margin-top: 3rem;
-    min-height: calc(100vh - 3rem - 119px);
+    min-height: calc(100vh - 3rem - 119px - 38px);
 }
 
 .notes {
@@ -79,7 +80,21 @@ body {
     background-color: transparent;
     font-size: 2rem;
     resize: none;
-    min-height: calc(100vh - 3rem - 129px);
+    min-height: calc(100vh - 3rem - 129px - 38px);
     padding: 0;
     margin: 0;
+}
+
+*[tooltip] {
+    position: relative;
+}
+
+*[tooltip]:hover:before {
+    content: attr(tooltip);
+    background-color: #000;
+    color: #fafafa;
+    top: 1rem;
+    padding: 2px;
+    position: absolute;
+    white-space: nowrap;
 }
