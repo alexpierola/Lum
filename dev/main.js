@@ -55,12 +55,14 @@ const chargeLocation = (position) => {
         .then(processStatus)
         .then(resp => resp.json())
         .then(data => {
-            let toSave = {}
-            toSave['weather'] = data.weather[0]
-            toSave['temperature'] = data.main
-            toSave['timeCall'] = Date.now()
-            save(weatherKey, toSave)
-            setHeader(toSave)
+            if (data.weather[0].icon) {
+                let toSave = {}
+                toSave['weather'] = data.weather[0]
+                toSave['temperature'] = data.main
+                toSave['timeCall'] = Date.now()
+                save(weatherKey, toSave)
+                setHeader(toSave)
+            }
         })
 }
 
@@ -70,9 +72,9 @@ const setHeader = (data) => {
     document.querySelector('.wheather-info.temp').innerText = `${data.temperature.temp}ºC`
     document.querySelector('.wheather-info.templt.max').innerText = `${data.temperature.temp_max}ºC`
     document.querySelector('.wheather-info.templt.min').innerText = `${data.temperature.temp_min}ºC`
-    setInterval(() => {
+    setTimeout(() => {
         acceptClick = true
-    }, 2000)
+    }, 1000)
 }
 
 const checkNotes = () => {
